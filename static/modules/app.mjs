@@ -1,4 +1,4 @@
-/* hash-router/static/modules/app.mjs */
+/* /home/blackbox/git/hash-router/static/modules/app.mjs */
 import { HashRouter } from './hash-router.mjs';
 
 const main = async () => {

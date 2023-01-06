@@ -1,5 +1,5 @@
-/* hash-router/static/modules/hash-router.mjs */
-import { AsyncRequest } from 'async-request.mjs';
+/* /home/blackbox/git/hash-router/static/modules/hash-router.mjs */
+import { AsyncRequest } from './async-request.mjs';
 
 class HashRouter {
     constructor(selector, routes = {}) {
@@ -13,7 +13,7 @@ class HashRouter {
         let route = this.routes[hash];
         if (route) {
             const request = new AsyncRequest();
-            const html = await request.text(route);
+            const html = await request.get(route);
             document.querySelector(this.selector).innerHTML = html;
         }
     }

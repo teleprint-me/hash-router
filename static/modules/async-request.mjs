@@ -1,3 +1,4 @@
+/* /home/blackbox/git/hash-router/static/modules/async-request.mjs */
 class AsyncRequest {
     async get(url, type = 'text') {
         const response = await fetch(url);
