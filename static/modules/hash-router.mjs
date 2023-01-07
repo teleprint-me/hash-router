@@ -18,8 +18,8 @@ class HashRouter {
         }
     }
 
-    addRoute(hash, callback) {
-        this.routes[hash] = callback;
+    addRoute(hash, path) {
+        this.routes[hash] = path;
     }
 
     init(selector) {
