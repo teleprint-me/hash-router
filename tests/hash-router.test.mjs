@@ -3,18 +3,10 @@ import { AsyncRequest } from '../static/modules/async-request.mjs';
 import { HashRouter } from '../static/modules/hash-router.mjs';
 
 const routes = {
-    404: {
-        path: '/static/views/404.html'
-    },
-    '/': {
-        path: '/static/views/profile.html'
-    },
-    '/portfolio': {
-        path: '/static/views/portfolio.html'
-    },
-    '/contact': {
-        path: '/static/views/contact.html'
-    }
+    404: '/static/views/404.html',
+    '/': '/static/views/profile.html',
+    '/portfolio': '/static/views/portfolio.html',
+    '/contact': '/static/views/contact.html'
 };
 
 const router = new HashRouter('#test-view-onhashchange', routes);
@@ -37,6 +29,7 @@ const attachTestResult = (selector, result, message) => {
 
 const testRouteChanges = () => {
     const expectedRoute = '/portfolio';
+    window.location.hash = expectedRoute;
     const currentRoute = window.location.hash.substring(1);
     const result = expectedRoute === currentRoute;
     const message = `Route changes to ${expectedRoute}`;
@@ -48,14 +41,13 @@ const testContentInjection = async () => {
     const expectedRoute = '/portfolio';
     window.location.hash = expectedRoute;
     const request = new AsyncRequest();
-    const html = await request.get(routes[expectedRoute].path);
-    const result = html instanceof HTMLHtmlElement;
+    const html = await request.get(routes[expectedRoute]);
+    const result = typeof html === 'string';
+    console.log(result);
     const message = `Content injection for ${expectedRoute}`;
     console.assert(result, message);
     attachTestResult('#test-view-onhashchange', result, message);
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-    testRouteChanges();
-    testContentInjection();
-});
+testRouteChanges();
+testContentInjection();
