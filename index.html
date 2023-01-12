@@ -5,23 +5,18 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Router</title>
+        <title>Javascript Hash Router Tutorial</title>
     </head>
     <body>
-        <header id="router">
-            <nav>
-                <a href="/" data-route>
-                    <span class="text">Profile</span>
-                </a>
-                <a href="/portfolio" data-route>
-                    <span class="text">Portfolio</span>
-                </a>
-                <a href="/contact" data-route>
-                    <span class="text">Contact</span>
-                </a>
+        <header>
+            <nav class="router">
+                <a href="/#/">Home</a>
+                <a href="/#/about">About</a>
+                <a href="/#/contact">Contact</a>
+                <a href="/#/undefined">Undefined</a>
             </nav>
         </header>
-        <main id="app"></main>
+        <main></main>
         <script type="module" src="/static/modules/app.mjs"></script>
     </body>
 </html>

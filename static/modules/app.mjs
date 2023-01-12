@@ -1,26 +1,21 @@
-/* /home/blackbox/git/hash-router/static/modules/app.mjs */
-import { HashRouter } from './hash-router.mjs';
+const root = '#/';
 
-const main = async () => {
-    const routes = {
-        404: {
-            path: '/static/views/404.html'
-        },
-        '/': {
-            path: '/static/views/profile.html'
-        },
-        '/portfolio': {
-            path: '/static/views/portfolio.html'
-        },
-        '/contact': {
-            path: '/static/views/contact.html'
-        }
-    };
-
-    const router = new HashRouter('#app', routes);
-
-    // Initialize the router using router id as the container
-    router.init('#router');
+const routes = {
+    404: '/static/views/404.html',
+    '#/': '/static/views/home.html',
+    '#/about': '/static/views/about.html',
+    '#/contact': '/static/views/contact.html'
 };
 
-document.addEventListener('DOMContentLoaded', main);
+async function hashchange() {
+    let hash = window.location.hash;
+    if (!hash) {
+        window.location = `/${root}`;
+    }
+    const route = routes[hash] || routes[404];
+    const text = await fetch(route).then((response) => response.text());
+    document.querySelector('main').innerHTML = text;
+}
+
+window.addEventListener('hashchange', hashchange);
+hashchange();
